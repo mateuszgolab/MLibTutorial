@@ -1,4 +1,4 @@
-package ml.pipelines
+package ml.features
 
 import org.apache.spark.ml.feature.{HashingTF, IDF, Tokenizer}
 import spark.SparkSessionObject
@@ -6,9 +6,7 @@ import spark.SparkSessionObject
 object TermFrequencyInverseDocumentFrequency {
 
   def main(args: Array[String]): Unit = {
-    val spark = SparkSessionObject.getSparkSession("EstimatorTransformerParamExample")
-
-    import spark.implicits._
+    val spark = SparkSessionObject.getSparkSession("TermFrequencyInverseDocumentFrequency")
 
     val sentenceData = spark
       .createDataFrame(
@@ -34,9 +32,8 @@ object TermFrequencyInverseDocumentFrequency {
     val featurizedData = hashingTF.transform(wordsData)
 
     /**
-     * IDF is an Estimator which is fit on a dataset and produces an IDFModel.
-     * The IDFModel takes feature vectors (generally created from HashingTF or CountVectorizer) and scales each feature.
-     * Intuitively, it down-weights features which appear frequently in a corpus.
+     * IDF is an Estimator which is fit on a dataset and produces an IDFModel. The IDFModel takes feature vectors (generally created from HashingTF or
+     * CountVectorizer) and scales each feature. Intuitively, it down-weights features which appear frequently in a corpus.
      */
     val idf = new IDF()
       .setInputCol("rawFeatures")

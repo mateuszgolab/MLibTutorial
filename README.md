@@ -8,3 +8,5 @@ Pipeline : chains Transformers and Estimators
 
 https://spark.apache.org/docs/latest/ml-pipeline.html
 
+https://spark.apache.org/docs/latest/ml-features.html
+
